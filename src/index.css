@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/assets/Mona-Sans.woff2") format("woff2 supports variations"),
+    url("/assets/Mona-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  @apply font-sans antialiased;
+}
+
+html,
+body,
+#root {
+  @apply h-full;
+}
+
+body {
+  @apply bg-neutral-50 text-neutral-600;
+}
+
+h1 {
+  @apply text-neutral-800;
+}
+
+#root {
+  @apply flex items-center w-full max-w-4xl px-8 mx-auto;
+}

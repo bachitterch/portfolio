@@ -1,0 +1,12 @@
+export interface Env {
+  CONTENTFUL_ACCESS_TOKEN: string;
+  CONTENTFUL_SPACE_ID: string;
+  CONTENTFUL_PREVIEW_ACCESS_TOKEN: string;
+  CONTENTFUL_PREVIEW_TOKEN: string;
+
+  SPOTIFY_CLIENT_ID: string;
+  SPOTIFY_CLIENT_SECRET: string;
+  SPOTIFY_REFRESH_TOKEN: string;
+
+  REVUE_API_KEY: string;
+}

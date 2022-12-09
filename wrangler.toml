@@ -1,0 +1,5 @@
+name = "bachitter-dev-api"
+main = "src/server/index.ts"
+compatibility_date = "2022-11-27"
+
+[vars]
