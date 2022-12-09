@@ -51,7 +51,7 @@ export function SpotifyNowPlaying() {
       {currentPlaying?.is_playing ? (
         <a
           href={currentPlaying.item?.external_urls.spotify}
-          className="flex items-center gap-2 text-xs"
+          className="inline-flex items-center gap-2 text-xs"
         >
           <Bars />
           <div className="inline-flex">
