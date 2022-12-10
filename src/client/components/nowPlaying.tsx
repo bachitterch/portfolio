@@ -7,7 +7,7 @@ function Bars() {
 
   useEffect(() => {
     animate(
-      "span",
+      "#bar",
       {
         transform: [
           "scaleY(0.3)",
@@ -22,7 +22,7 @@ function Bars() {
         duration: 2,
         repeat: Infinity,
         easing: ["ease-in-out"],
-        delay: stagger(barsNumber * Math.random(), {
+        delay: stagger(Math.random(), {
           easing: "ease-in-out",
         }),
       }
@@ -31,9 +31,9 @@ function Bars() {
 
   return (
     <div className="relative flex gap-[3px] w-auto h-4 scale-75">
-      <span className="w-1 h-full bg-gray-600 rounded" />
-      <span className="w-1 h-full bg-gray-600 rounded" />
-      <span className="w-1 h-full bg-gray-600 rounded" />
+      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
+      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
+      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
     </div>
   );
 }
