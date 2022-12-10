@@ -31,5 +31,5 @@ h1 {
 }
 
 #root {
-  @apply flex items-center w-full max-w-4xl px-8 mx-auto;
+  @apply flex items-center w-full max-w-4xl px-8 mx-auto relative;
 }

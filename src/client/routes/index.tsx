@@ -1,4 +1,5 @@
 import { AgeYear } from "../components/ageYear";
+import { Badge } from "../components/Badge";
 import { Head } from "../components/Head";
 import { SpotifyNowPlaying } from "../components/nowPlaying";
 import { rootRoute } from "./__root";
@@ -19,6 +20,7 @@ function Home() {
           },
         ]}
       />
+      <Badge message="🚧 This website is still under development." />
       <main>
         <section>
           <div>

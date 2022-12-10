@@ -39,11 +39,16 @@ function Bars() {
 }
 
 export function SpotifyNowPlaying() {
-  const { data: currentPlaying, status } =
-    trpc.spotify.currentPlayingSong.useQuery();
+  const {
+    data: currentPlaying,
+    status,
+    error,
+  } = trpc.spotify.currentPlayingSong.useQuery();
 
-  if (status === "loading") {
-    return <div className="flex items-center gap-4 text-xs">Loading...</div>;
+  if (status === "error") {
+    return (
+      <div className="flex items-center gap-4 text-xs">{error.message}</div>
+    );
   }
 
   return (
