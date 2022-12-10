@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { trpc } from "../utils/trpc";
 
 function Bars() {
-  const barsNumber = document.querySelectorAll("span").length;
-
   useEffect(() => {
     animate(
       "#bar",
