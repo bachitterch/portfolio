@@ -1,7 +1,7 @@
-import { AgeYear } from "../components/ageYear";
+import { AgeYear } from "../components/AgeYear";
 import { Badge } from "../components/Badge";
 import { Head } from "../components/Head";
-import { SpotifyNowPlaying } from "../components/nowPlaying";
+import { SpotifyNowPlaying } from "../components/NowPlaying";
 import { rootRoute } from "./__root";
 
 export const indexRoute = rootRoute.createRoute({
