@@ -6,9 +6,6 @@ import { AppRouter } from "src/server/_app";
 export const trpc = createTRPCReact<AppRouter>();
 
 const baseUrl = () => {
-  if (import.meta.env.DEV) {
-    return "http://192.168.1.107:8787/trpc";
-  }
   if (!import.meta.env.VITE_API_URL) {
     return "http://192.168.1.107:8787/trpc";
   }
