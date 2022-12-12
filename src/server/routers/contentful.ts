@@ -1,4 +1,5 @@
 import { string, z } from "zod";
+
 import { contentfulService } from "../lib/contentful/client";
 import { tProcedure, tRouter } from "../trpc";
 
@@ -7,7 +8,7 @@ export const contentfulRouter = tRouter({
     .input(
       z.object({
         token: string().optional(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const client = new contentfulService(ctx.deps);
@@ -33,7 +34,7 @@ export const contentfulRouter = tRouter({
       z.object({
         token: z.string().optional(),
         slug: z.string(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const client = new contentfulService(ctx.deps);

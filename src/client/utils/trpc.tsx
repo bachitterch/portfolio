@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createTRPCReact, httpBatchLink } from "@trpc/react-query";
-import { ReactNode, useMemo } from "react";
-import { AppRouter } from "src/server/_app";
+import type { ReactNode } from "react";
+import { useMemo } from "react";
+import type { AppRouter } from "src/server/_app";
 
 export const trpc = createTRPCReact<AppRouter>();
 
@@ -21,7 +22,7 @@ export function TrpcClient({ children }: { children: ReactNode }) {
           queries: {},
         },
       }),
-    []
+    [],
   );
   const trpcClient = useMemo(
     () =>
@@ -32,7 +33,7 @@ export function TrpcClient({ children }: { children: ReactNode }) {
           }),
         ],
       }),
-    []
+    [],
   );
 
   return (

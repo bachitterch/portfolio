@@ -1,9 +1,10 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { Router } from "itty-router";
-import { Dependencies } from "./utils";
+
 import { appRouter } from "./_app";
+import type { Env } from "./env";
 import { createContext } from "./trpc";
-import { Env } from "./env";
+import { Dependencies } from "./utils";
 
 const router = Router();
 
@@ -12,7 +13,7 @@ function addCORS(v: Response) {
   v.headers.append("Access-Control-Allow-Methods", "GET, POST");
   v.headers.append(
     "Access-Control-Allow-Headers",
-    "Authorization,Content-Type"
+    "Authorization,Content-Type",
   );
   v.headers.append("Access-Control-Max-Age", "600");
   return v;
@@ -47,11 +48,13 @@ const handler = {
     const deps = new Dependencies(env);
 
     let resp = (await router.handle(request, deps).catch(
-      (error) =>
+      error =>
         new Response(error.message || "Server Error", {
           status: error.status || 500,
-        })
+        }),
     )) as Response;
+
+    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
     if (!resp) {
       resp = new Response("", { status: 404 });
     }

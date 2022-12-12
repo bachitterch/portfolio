@@ -1,6 +1,9 @@
-import { Dependencies } from "src/server/utils";
+import type { Dependencies } from "src/server/utils";
 
-export async function createSubscription(deps: Dependencies, email: string) {
+export async function createSubscription(
+  deps: Dependencies,
+  email: string,
+): Promise<string> {
   const res: Response = await fetch(
     "https://www.getrevue.co/api/v2/subscribers",
     {
@@ -13,11 +16,11 @@ export async function createSubscription(deps: Dependencies, email: string) {
         email,
         double_opt_in: false,
       }),
-    }
+    },
   );
 
   if (res.status !== 200) {
-    throw new Error(`${res.json()}`);
+    throw new Error(`Please try again! :(`);
   }
 
   return res.json();

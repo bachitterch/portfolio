@@ -1,6 +1,8 @@
-import { ApolloClient, ApolloQueryResult, InMemoryCache } from "@apollo/client";
-import { Env } from "src/server/env";
-import { Dependencies } from "src/server/utils";
+import type { ApolloQueryResult } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import type { Env } from "src/server/env";
+import type { Dependencies } from "src/server/utils";
+
 import {
   PostBySlug,
   PostCollection,
@@ -8,7 +10,7 @@ import {
   PreviewPost,
   ProjectCollection,
 } from "./queries";
-import {
+import type {
   AllPostSlugsResponse,
   AllPostsResponse,
   PostBySlugResponse,
@@ -25,7 +27,7 @@ export class contentfulService {
     this.apiEndpoint = `https://graphql.contentful.com/content/v1/spaces/${deps.env.CONTENTFUL_SPACE_ID}/environments/master`;
   }
 
-  private apolloClient(preview: boolean = false) {
+  private apolloClient(preview = false) {
     return new ApolloClient({
       uri: this.apiEndpoint,
       cache: new InMemoryCache(),
@@ -40,7 +42,7 @@ export class contentfulService {
   }
 
   public async getAllPosts(
-    preview: boolean
+    preview: boolean,
   ): Promise<ApolloQueryResult<AllPostsResponse>> {
     const { data } = await this.apolloClient(preview).query({
       query: PostCollection,
@@ -62,7 +64,7 @@ export class contentfulService {
 
   public async getPost(
     slug: string,
-    preview: boolean = false
+    preview = false,
   ): Promise<ApolloQueryResult<PostBySlugResponse>> {
     const { data } = await this.apolloClient(preview).query({
       query: PostBySlug,
@@ -77,7 +79,7 @@ export class contentfulService {
 
   public async getPreviewPost(
     slug: string,
-    preview: boolean = true
+    preview = true,
   ): Promise<ApolloQueryResult<PreviewPostResponse>> {
     const { data } = await this.apolloClient(preview).query({
       query: PreviewPost,

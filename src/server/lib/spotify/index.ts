@@ -1,6 +1,7 @@
-import { Env } from "src/server/env";
-import { Dependencies } from "src/server/utils";
-import { CurrentPlayingResponse, LastPlayedResponse } from "./types";
+import type { Env } from "src/server/env";
+import type { Dependencies } from "src/server/utils";
+
+import type { CurrentPlayingResponse, LastPlayedResponse } from "./types";
 
 export interface AccessTokenResponse {
   access_token: string;
@@ -24,14 +25,14 @@ export class SpotifyService {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      }
+      },
     );
 
     return res.json();
   }
 
   public async getNowPlaying(
-    accessToken: string
+    accessToken: string,
   ): Promise<CurrentPlayingResponse> {
     const res = await fetch(
       "https://api.spotify.com/v1/me/player/currently-playing",
@@ -39,7 +40,7 @@ export class SpotifyService {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      }
+      },
     );
 
     if (res.status === 204 || res.status > 400) {
@@ -69,7 +70,7 @@ export class SpotifyService {
 
   private getAuthHeader(): string {
     return `Basic ${btoa(
-      this.env.SPOTIFY_CLIENT_ID + ":" + this.env.SPOTIFY_CLIENT_SECRET
+      this.env.SPOTIFY_CLIENT_ID + ":" + this.env.SPOTIFY_CLIENT_SECRET,
     )}`;
   }
 }

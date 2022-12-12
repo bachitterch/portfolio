@@ -1,5 +1,6 @@
 import { animate, stagger } from "motion";
 import { useEffect } from "react";
+
 import { trpc } from "../utils/trpc";
 
 function Bars() {
@@ -24,15 +25,15 @@ function Bars() {
           from: "center",
           easing: "ease-in-out",
         }),
-      }
+      },
     );
   }, []);
 
   return (
-    <div className="relative flex gap-[3px] w-auto h-4 scale-75">
-      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
-      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
-      <span id="bar" className="w-1 h-full bg-gray-600 rounded" />
+    <div className="relative flex h-4 w-auto scale-75 gap-[3px]">
+      <span id="bar" className="h-full w-1 rounded bg-gray-600" />
+      <span id="bar" className="h-full w-1 rounded bg-gray-600" />
+      <span id="bar" className="h-full w-1 rounded bg-gray-600" />
     </div>
   );
 }
@@ -59,8 +60,7 @@ export function SpotifyNowPlaying() {
         >
           <Bars />
           <div className="inline-flex">
-            {currentPlaying?.item?.name} -{" "}
-            {currentPlaying.item?.artists[0].name}
+            {currentPlaying.item?.name} - {currentPlaying.item?.artists[0].name}
           </div>
         </a>
       ) : null}

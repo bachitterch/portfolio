@@ -1,25 +1,25 @@
 import { useEffect, useRef } from "react";
 import { Link, Meta } from "react-head";
 
-export type HeadProps = {
+export interface HeadProps {
   title?: string;
   link?: {
     rel:
-    | "alternative"
-    | "author"
-    | "dns-prefetch"
-    | "help"
-    | "icon"
-    | "license"
-    | "next"
-    | "pingback"
-    | "preconnect"
-    | "prefetch"
-    | "preload"
-    | "prerender"
-    | "prev"
-    | "search"
-    | "stylesheet";
+      | "alternative"
+      | "author"
+      | "dns-prefetch"
+      | "help"
+      | "icon"
+      | "license"
+      | "next"
+      | "pingback"
+      | "preconnect"
+      | "prefetch"
+      | "preload"
+      | "prerender"
+      | "prev"
+      | "search"
+      | "stylesheet";
     href: string;
   }[];
   meta?: {
@@ -32,25 +32,25 @@ export type HeadProps = {
   };
   openGraph?: {
     type:
-    | "og:title"
-    | "og:url"
-    | "og:image"
-    | "og:type"
-    | "og:description"
-    | "og:locale";
+      | "og:title"
+      | "og:url"
+      | "og:image"
+      | "og:type"
+      | "og:description"
+      | "og:locale";
 
     content: string;
   }[];
   twitter?: {
     type:
-    | "twitter:site"
-    | "twitter:creator"
-    | "twitter:description"
-    | "twitter:title"
-    | "twitter:image";
+      | "twitter:site"
+      | "twitter:creator"
+      | "twitter:description"
+      | "twitter:title"
+      | "twitter:image";
     content: string;
   }[];
-};
+}
 
 export function Head(props: HeadProps) {
   const prevTitle = useRef(document.title);
