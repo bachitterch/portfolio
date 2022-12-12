@@ -12,6 +12,7 @@ function Home() {
   return (
     <>
       <Head
+        title="Home - Bachitter Chahal"
         meta={[
           {
             name: "description",
