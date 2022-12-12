@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { Link, Meta } from "react-head";
+import { createPortal } from "react-dom";
 
 export interface HeadProps {
   title?: string;
@@ -51,39 +50,35 @@ export interface HeadProps {
   }[];
 }
 
+const headRoot = document.head;
+
 export function Head(props: HeadProps) {
-  const prevTitle = useRef(document.title);
-
-  if (document.title !== props.title) document.title = props.title!;
-
-  if (!props.title) document.title = prevTitle.current;
-
-  useEffect(() => {
-    return () => {
-      document.title = prevTitle.current;
-    };
-  }, []);
-
-  return (
+  return createPortal(
     <>
+      <title>
+        {props.title
+          ? props.title
+          : "Bachitter Chahal - Full Stack Web Developer"}
+      </title>
       {props.meta?.map((tag, index) => (
-        <Meta key={index} name={tag.name} content={tag.content} />
+        <meta key={index} name={tag.name} content={tag.content} />
       ))}
       {props.link?.map((tag, index) => (
-        <Link key={index} rel={tag.rel} href={tag.href} />
+        <link key={index} rel={tag.rel} href={tag.href} />
       ))}
       {props.twitter?.map((tag, index) => (
-        <Meta key={index} name={tag.type} content={tag.content} />
+        <meta key={index} name={tag.type} content={tag.content} />
       ))}
       {props.openGraph?.map((tag, index) => (
-        <Meta key={index} name={tag.type} content={tag.content} />
+        <meta key={index} name={tag.type} content={tag.content} />
       ))}
       {props.canonical && (
-        <Link
+        <link
           rel="canonical"
           href={`https://bachitter.dev/${props.canonical.href}`}
         />
       )}
-    </>
+    </>,
+    headRoot,
   );
 }
