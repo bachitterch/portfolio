@@ -1,8 +1,8 @@
 import { createReactRouter, RouterProvider } from "@tanstack/react-router";
 
 import { indexRoute } from "./routes";
-import { aboutRoute } from "./routes/about";
 import { rootRoute } from "./routes/__root";
+import { aboutRoute } from "./routes/about";
 
 const routeConfig = rootRoute.addChildren([indexRoute, aboutRoute]);
 
