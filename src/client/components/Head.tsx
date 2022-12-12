@@ -27,7 +27,6 @@ export interface HeadProps {
     content: string;
   }[];
   canonical?: {
-    type: "canonical";
     href: string;
   };
   openGraph?: {
@@ -80,7 +79,10 @@ export function Head(props: HeadProps) {
         <Meta key={index} name={tag.type} content={tag.content} />
       ))}
       {props.canonical && (
-        <Link rel={props.canonical.type} href={props.canonical.href} />
+        <Link
+          rel="canonical"
+          href={`https://bachitter.dev/${props.canonical.href}`}
+        />
       )}
     </>
   );
