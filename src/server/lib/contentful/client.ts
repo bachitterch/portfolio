@@ -1,6 +1,6 @@
 import type { ApolloQueryResult } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import type { Env } from "src/server/env";
+import { type Env } from "src/server/env";
 import type { Dependencies } from "src/server/utils";
 
 import {

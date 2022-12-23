@@ -51,3 +51,22 @@ export interface LastPlayedResponse {
   };
   total: number;
 }
+
+export interface TopTracksResponse {
+  href: string;
+  items: {
+    album: SpotifyItemAlbum;
+    artists: SpotifyArtist[];
+    external_urls: {
+      spotify: string;
+    };
+    popularity: number;
+    id: string;
+    name: string;
+  }[];
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
+}

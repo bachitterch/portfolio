@@ -19,4 +19,13 @@ export const spotifyRouter = tRouter({
 
     return data;
   }),
+  topTracks: tProcedure.query(async ({ ctx }) => {
+    const spotifyClient = new SpotifyService(ctx.deps);
+
+    const { access_token: accessToken } = await spotifyClient.getAccessToken();
+
+    const data = await spotifyClient.getTopTracks(accessToken);
+
+    return data;
+  }),
 });

@@ -25,7 +25,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["@cloudflare/workers-types"],
+    "types": ["@cloudflare/workers-types", "react/experimental"],
     "useUnknownInCatchVariables": true
   },
   "include": ["src"],

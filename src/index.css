@@ -20,7 +20,11 @@ html {
 html,
 body,
 #root {
-  @apply h-full;
+  @apply min-h-full;
+}
+
+#root {
+ @apply mx-auto w-full;
 }
 
 body {
@@ -31,6 +35,3 @@ h1 {
   @apply text-4xl font-bold tracking-tight text-neutral-800 sm:text-5xl;
 }
 
-#root {
-  @apply relative mx-auto flex w-full max-w-4xl flex-col items-center justify-center px-8;
-}

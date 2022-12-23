@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 export function Navbar() {
   return (
-    <nav className="fixed bottom-8">
+    <nav className="fixed bottom-8 mx-auto">
       <ul className="flex gap-4 rounded-2xl border border-neutral-200 bg-neutral-100 p-2">
         <li>
           <Link to="/" aria-label="Home">
