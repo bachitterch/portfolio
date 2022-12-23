@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: "*"
+    branches: ["*"]
 
 jobs:
   lint:
@@ -81,7 +81,7 @@ jobs:
       - name: Build project
         run: pnpm build
   deploy:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     name: Deploy
     steps:
       - uses: actions/checkout@v2
