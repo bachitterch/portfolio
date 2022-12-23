@@ -3,10 +3,10 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 
+import { appRouter } from "./_app";
 import type { Env } from "./env";
 import { createContext } from "./trpc";
 import { Dependencies } from "./utils";
-import { appRouter } from "./_app";
 
 const app = new Hono<{ Bindings: Env }>();
 
