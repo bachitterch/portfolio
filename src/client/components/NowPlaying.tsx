@@ -1,7 +1,7 @@
 import { animate, stagger } from "motion";
 import { useEffect } from "react";
 
-import { trpc } from "../utils/trpc";
+import { trpcReact } from "../utils/trpc";
 
 function Bars() {
   useEffect(() => {
@@ -43,7 +43,7 @@ export function SpotifyNowPlaying() {
     data: currentPlaying,
     status,
     error,
-  } = trpc.spotify.currentPlayingSong.useQuery();
+  } = trpcReact.spotify.currentPlayingSong.useQuery();
 
   if (status === "error") {
     return (
