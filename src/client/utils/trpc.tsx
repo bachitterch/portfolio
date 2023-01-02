@@ -1,10 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createTRPCProxyClient } from "@trpc/client";
 import { createTRPCReact, httpBatchLink } from "@trpc/react-query";
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 import type { AppRouter } from "src/server/_app";
-
-export const trpc = createTRPCReact<AppRouter>();
 
 const baseUrl = () => {
   if (!import.meta.env.VITE_API_URL) {
@@ -13,6 +12,15 @@ const baseUrl = () => {
 
   return import.meta.env.VITE_API_URL + "/trpc";
 };
+
+export const trpcReact = createTRPCReact<AppRouter>();
+export const trpcVanilla = createTRPCProxyClient<AppRouter>({
+  links: [
+    httpBatchLink({
+      url: baseUrl(),
+    }),
+  ],
+});
 
 export function TrpcClient({ children }: { children: ReactNode }) {
   const queryClient = useMemo(
@@ -26,7 +34,7 @@ export function TrpcClient({ children }: { children: ReactNode }) {
   );
   const trpcClient = useMemo(
     () =>
-      trpc.createClient({
+      trpcReact.createClient({
         links: [
           httpBatchLink({
             url: baseUrl(),
@@ -38,11 +46,11 @@ export function TrpcClient({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <trpcReact.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
           {children}
         </QueryClientProvider>
-      </trpc.Provider>
+      </trpcReact.Provider>
     </>
   );
 }

@@ -1,7 +1,8 @@
-import type { Env } from "src/server/env";
-import type { Dependencies } from "src/server/utils";
+import { type Env } from "src/server/env";
+import { type Dependencies } from "src/server/utils";
 
-import type { CurrentPlayingResponse, LastPlayedResponse } from "./types";
+import type { LastPlayedResponse, TopTracksResponse } from "./types";
+import { type CurrentPlayingResponse } from "./types";
 
 export interface AccessTokenResponse {
   access_token: string;
@@ -16,6 +17,19 @@ export class SpotifyService {
 
   constructor(deps: Dependencies) {
     this.env = deps.env;
+  }
+
+  public async getTopTracks(accessToken: string): Promise<TopTracksResponse> {
+    const res: Response = await fetch(
+      "https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+
+    return res.json();
   }
 
   public async getLastPlayed(accessToken: string): Promise<LastPlayedResponse> {
