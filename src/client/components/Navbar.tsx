@@ -30,7 +30,7 @@ function NavItem(props: NavItemProps) {
           active
             ? "group rounded-xl border border-neutral-200 bg-neutral-200 p-2"
             : "group rounded-xl border border-neutral-200 p-2",
-        )} transition-all duration-300`}
+        )} transition-all duration-150`}
       >
         {props.children}
       </div>
