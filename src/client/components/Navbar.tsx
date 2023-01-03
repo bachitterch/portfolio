@@ -1,16 +1,17 @@
 import {
+  type RegisteredAllRouteInfo,
   Link,
-  RegisteredAllRouteInfo,
   useRouter,
 } from "@tanstack/react-router";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
+
 import { classNames } from "../utils/helpers";
 
-type NavItemProps = {
+interface NavItemProps {
   label: string;
   href: keyof RegisteredAllRouteInfo["routeInfoById"];
   children: ReactNode;
-};
+}
 
 function NavItem(props: NavItemProps) {
   const router = useRouter();
