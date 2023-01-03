@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  @apply hidden
+}
+
+
 @font-face {
   font-family: "Mona Sans";
   src: url("/assets/Mona-Sans.woff2") format("woff2 supports variations"),
@@ -17,20 +22,14 @@ html {
   @apply font-sans antialiased;
 }
 
-html,
-body,
-#root {
-  @apply h-full;
-}
-
 body {
-  @apply bg-neutral-50 text-neutral-600;
+  @apply bg-neutral-50 text-neutral-600 leading-6 overflow-x-hidden;
 }
 
 h1 {
   @apply text-4xl font-bold tracking-tight text-neutral-800 sm:text-5xl;
 }
 
-#root {
-  @apply relative mx-auto flex w-full max-w-4xl flex-col items-center justify-center px-8;
+h2 {
+  @apply text-3xl font-semibold tracking-tight text-neutral-800 sm:text-4xl
 }
