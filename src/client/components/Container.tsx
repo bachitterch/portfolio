@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import { Badge } from "./Badge";
 import { Navbar } from "./Navbar";
 
