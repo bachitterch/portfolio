@@ -17,12 +17,12 @@ function NavItem(props: NavItemProps) {
   const router = useRouter();
 
   const [active, setActive] = useState(
-    router.state.currentLocation.href === props.href,
+    router.store.currentLocation.href === props.href,
   );
 
   useEffect(() => {
-    setActive(() => router.state.currentLocation.href === props.href);
-  }, [router.state.currentLocation.href]);
+    setActive(() => router.store.currentLocation.href === props.href);
+  }, [router.store.currentLocation.href]);
 
   return (
     <Link to={props.href} aria-label={props.label}>
