@@ -26,6 +26,10 @@ export class SpotifyService {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        cf: {
+          cacheTtl: 1800,
+          cacheEverything: true,
+        },
       },
     );
 
