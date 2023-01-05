@@ -1,7 +1,7 @@
-import { useMatch } from "@tanstack/react-router";
+import { useLoaderData } from "@tanstack/react-router";
 
 import { Head } from "../components/Head";
-import { trpcVanilla } from "../utils/trpc";
+import { trpcReact, trpcVanilla } from "../utils/trpc";
 import { rootRoute } from "./__root";
 
 export const aboutRoute = rootRoute.createRoute({
@@ -10,13 +10,17 @@ export const aboutRoute = rootRoute.createRoute({
   loader: async () => {
     return {
       topTracks: await trpcVanilla.spotify.topTracks.query(),
-      lastPlayed: await trpcVanilla.spotify.getLastPlayedSong.query(),
     };
   },
+  loaderGcMaxAge: 10 * 60 * 1000,
 });
 
 function About() {
-  const { loaderData: data } = useMatch(aboutRoute.id);
+  const data = useLoaderData({
+    from: aboutRoute.id,
+  });
+
+  const { data: lastPlayed } = trpcReact.spotify.getLastPlayedSong.useQuery();
 
   return (
     <>
@@ -50,10 +54,10 @@ function About() {
           transitioned me into a FullStack.
         </p>
         <h2 className="mt-6 w-full">Music</h2>
-        <div className="mt-6 flex w-full">
-          <a href={data.lastPlayed.items[0].track.external_urls.spotify}>
-            Last Played: {data.lastPlayed.items[0].track.name} -{" "}
-            {data.lastPlayed.items[0].track.artists[0].name}
+        <div className="mt-6 flex w-full items-center rounded-xl border border-neutral-200 bg-neutral-100 py-2 px-3">
+          <a href={lastPlayed?.items[0].track.external_urls.spotify}>
+            Last Played: {lastPlayed?.items[0].track.name} -{" "}
+            {lastPlayed?.items[0].track.artists[0].name}
           </a>
         </div>
         <div className="mt-6 mb-36 grid w-full gap-4 sm:grid-cols-2">
